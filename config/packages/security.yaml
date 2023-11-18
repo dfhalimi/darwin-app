@@ -8,9 +8,6 @@ security:
         fos_userbundle:
             id: fos_user.user_provider.username
 
-    encoders:
-        FOS\UserBundle\Model\UserInterface: auto
-
     role_hierarchy:
         ROLE_ADMIN_READONLY: ROLE_USER
         ROLE_ADMIN:          ROLE_ADMIN_READONLY
@@ -26,10 +23,9 @@ security:
             user_checker: fos_user.user_checker
             form_login:
                 provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
+                enable_csrf: true
 
             logout: true
-            anonymous: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
