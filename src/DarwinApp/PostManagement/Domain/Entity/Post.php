@@ -23,11 +23,12 @@ class Post
      * @throws Exception
      */
     public function __construct(
-        string $title
+        string $title,
+        File   $imageFile
     )
     {
         $this->title = $title;
-        $this->imageFile = null;
+        $this->imageFile = $imageFile;
         $this->imageFileName = null;
         $this->rating = null;
         $this->createdAt = DateTimeUtility::createDateTimeUtc();
@@ -37,63 +38,28 @@ class Post
     }
 
     #[Id]
-    #[Column(name: "id", type: "guid")]
+    #[Column(
+        name: "id",
+        type: "guid"
+    )]
     #[GeneratedValue(strategy: "CUSTOM")]
     #[CustomIdGenerator(class: "App\Shared\Infrastructure\Utility\DatabaseIdGenerator")]
     private string $id;
-
-    #[Column(type: "string")]
-    private string $title;
-
-    #[Vich\UploadableField(
-        mapping: "post_image",
-        fileNameProperty: "imageFileName"
-    )]
-    #[Assert\File(maxSize: "10M")]
-    private ?File $imageFile;
-
-    #[Column(
-        name: "image_file_name",
-        type: "string",
-        length: 255,
-        nullable: true
-    )]
-    private ?string $imageFileName;
-
-    #[Column(
-        type: "float",
-        nullable: true
-    )]
-    private ?float $rating;
-
-    #[Column(
-        type: "datetime",
-        nullable: false
-    )]
-    private DateTime $createdAt;
-
-    #[Column(
-        type: "datetime",
-        nullable: true
-    )]
-    private ?DateTime $updatedAt;
-
-    #[Column(
-        type: "integer",
-        nullable: false
-    )]
-    private int $requiredLikes;
-
-    #[Column(
-        type: "integer",
-        nullable: false
-    )]
-    private int $currentLikes;
 
     public function getId(): string
     {
         return $this->id;
     }
+
+    #[Column(
+        name: "created_by",
+        type: "string",
+        nullable: false
+    )]
+    private string $createdBy;
+
+    #[Column(type: "string")]
+    private string $title;
 
     public function getTitle(): string
     {
@@ -104,6 +70,13 @@ class Post
     {
         $this->title = $title;
     }
+
+    #[Vich\UploadableField(
+        mapping: "post_image",
+        fileNameProperty: "imageFileName"
+    )]
+    #[Assert\File(maxSize: "10M")]
+    private ?File $imageFile;
 
     public function getImageFile(): ?File
     {
@@ -124,6 +97,14 @@ class Post
         }
     }
 
+    #[Column(
+        name: "image_file_name",
+        type: "string",
+        length: 255,
+        nullable: true
+    )]
+    private ?string $imageFileName;
+
     public function getImageFileName(): ?string
     {
         return $this->imageFileName;
@@ -133,6 +114,12 @@ class Post
     {
         $this->imageFileName = $imageFileName;
     }
+
+    #[Column(
+        type: "float",
+        nullable: true
+    )]
+    private ?float $rating;
 
     public function getRating(): ?float
     {
@@ -144,6 +131,12 @@ class Post
         $this->rating = $rating;
     }
 
+    #[Column(
+        type: "datetime",
+        nullable: false
+    )]
+    private DateTime $createdAt;
+
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
@@ -153,6 +146,12 @@ class Post
     {
         $this->createdAt = $createdAt;
     }
+
+    #[Column(
+        type: "datetime",
+        nullable: true
+    )]
+    private ?DateTime $updatedAt;
 
     public function getUpdatedAt(): ?DateTime
     {
@@ -164,6 +163,12 @@ class Post
         $this->updatedAt = $updatedAt;
     }
 
+    #[Column(
+        type: "integer",
+        nullable: false
+    )]
+    private int $requiredLikes;
+
     public function getRequiredLikes(): int
     {
         return $this->requiredLikes;
@@ -173,6 +178,12 @@ class Post
     {
         $this->requiredLikes = $requiredLikes;
     }
+
+    #[Column(
+        type: "integer",
+        nullable: false
+    )]
+    private int $currentLikes;
 
     public function getCurrentLikes(): int
     {
