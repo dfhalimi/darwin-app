@@ -22,6 +22,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Index(columns: ["username"], name: "username_idx")]
 class User extends FOSUser
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @throws Exception
      */
