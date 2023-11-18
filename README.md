@@ -1,2 +1,2 @@
-# darwin-app
+# Darwin
 The code that powers Darwin
