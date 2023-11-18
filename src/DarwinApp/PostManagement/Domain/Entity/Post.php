@@ -4,16 +4,19 @@ namespace App\DarwinApp\PostManagement\Domain\Entity;
 
 use App\Shared\Infrastructure\Utility\DateTimeUtility;
 use DateTime;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 use Exception;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="posts")
- */
+#[Entity]
+#[Table(name: "posts")]
 class Post
 {
     /**
@@ -33,53 +36,58 @@ class Post
         $this->currentLikes = 0;
     }
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="App\Shared\Infrastructure\Utility\DatabaseIdGenerator")
-     * @ORM\Column(name="id", type="guid")
-     */
+    #[Id]
+    #[Column(name: "id", type: "guid")]
+    #[GeneratedValue(strategy: "CUSTOM")]
+    #[CustomIdGenerator(class: "App\Shared\Infrastructure\Utility\DatabaseIdGenerator")]
     private string $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
+    #[Column(type: "string")]
     private string $title;
 
-    /**
-     * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageFileName")
-     * @Assert\File(maxSize="10M")
-     */
+    #[Vich\UploadableField(
+        mapping: "post_image",
+        fileNameProperty: "imageFileName"
+    )]
+    #[Assert\File(maxSize: "10M")]
     private ?File $imageFile;
 
-    /**
-     * @ORM\Column(name="image_file_name", type="string", length=255, nullable=true)
-     */
+    #[Column(
+        name: "image_file_name",
+        type: "string",
+        length: 255,
+        nullable: true
+    )]
     private ?string $imageFileName;
 
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
+    #[Column(
+        type: "float",
+        nullable: true
+    )]
     private ?float $rating;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=false)
-     */
+    #[Column(
+        type: "datetime",
+        nullable: false
+    )]
     private DateTime $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+    #[Column(
+        type: "datetime",
+        nullable: true
+    )]
     private ?DateTime $updatedAt;
 
-    /**
-     * @ORM\Column(type="integer", nullable=false)
-     */
+    #[Column(
+        type: "integer",
+        nullable: false
+    )]
     private int $requiredLikes;
 
-    /**
-     * @ORM\Column(type="integer", nullable=false)
-     */
+    #[Column(
+        type: "integer",
+        nullable: false
+    )]
     private int $currentLikes;
 
     public function getId(): string
