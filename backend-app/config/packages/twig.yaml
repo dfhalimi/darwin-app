@@ -1,0 +1,14 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+
+    paths:
+        'src/Shared/Presentation/Resources/templates': 'shared'
+
+        'src/DarwinApp/PostManagement/Presentation/Resources/templates': 'darwin_app.post_management'
+
+    globals:
+        post_management_service: '@App\DarwinApp\PostManagement\Domain\Service\PostManagementService'
+
+when@test:
+    twig:
+        strict_variables: true

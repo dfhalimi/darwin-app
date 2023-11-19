@@ -1,0 +1,8 @@
+darwin_app.post_management.presentation:
+    resource: '../src/DarwinApp/PostManagement/Presentation/Resources/config/routes.yaml'
+
+shared.presentation:
+    resource: '../src/Shared/Presentation/Resources/config/routes.yaml'
+
+_fos_user:
+    resource: "../src/DarwinApp/UserManagement/Presentation/Resources/config/routes_fos_user.yaml"

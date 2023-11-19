@@ -1,0 +1,16 @@
+{% extends '@shared/base.html.twig' %}
+
+{% block content %}
+    <h1>Darwin</h1>
+    {% if posts is empty %}
+        <div>
+            <p>Looks like you don't have any posts yet...</p>
+        </div>
+    {% else %}
+        {% for post in posts %}
+            <div>
+                <h4>{{ post.title }}</h4>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

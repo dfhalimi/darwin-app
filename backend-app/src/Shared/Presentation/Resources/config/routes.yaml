@@ -1,0 +1,11 @@
+shared.presentation.catchall.pattern:
+  path:     /{catchall}
+  controller: App\Shared\Presentation\Controller\CatchallController::indexAction
+  methods:  [GET]
+  requirements:
+    catchall: ".+"
+
+shared.presentation.catchall.root:
+  path:     /
+  controller: App\Shared\Presentation\Controller\CatchallController::indexAction
+  methods:  [GET]
