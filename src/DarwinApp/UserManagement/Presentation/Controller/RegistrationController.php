@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DarwinApp\UserManagement\Domain\Controller;
+namespace App\DarwinApp\UserManagement\Presentation\Controller;
 
 use App\DarwinApp\UserManagement\Domain\Entity\User;
 use App\DarwinApp\UserManagement\Domain\Service\RegistrationService;
@@ -118,6 +118,7 @@ class RegistrationController extends FOSUserBundleRegistrationController
                 $this->userManager->updateUser($user);
 
                 if (is_null($response = $event->getResponse())) {
+                    // TODO does not exist yet
                     $url = $this->generateUrl('fos_user_registration_confirmed');
                     $response = new RedirectResponse($url);
                 }

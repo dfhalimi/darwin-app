@@ -3,3 +3,6 @@ darwin_app.post_management.presentation:
 
 shared.presentation:
     resource: '../src/Shared/Presentation/Resources/config/routes.yaml'
+
+_fos_user:
+    resource: "../src/DarwinApp/UserManagement/Presentation/Resources/config/routes_fos_user.yaml"
