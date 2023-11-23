@@ -20,6 +20,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/DarwinApp/PostManagement/Domain/Entity'
                 prefix: 'App\DarwinApp\PostManagement\Domain\Entity'
 
+            App\DarwinApp\UserManagement\Domain\Entity:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/DarwinApp/UserManagement/Domain/Entity'
+                prefix: 'App\DarwinApp\UserManagement\Domain\Entity'
+
 when@test:
     doctrine:
         dbal:

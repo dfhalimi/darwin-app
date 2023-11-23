@@ -17,19 +17,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[Entity]
 #[Table(name: "posts")]
+#[Vich\Uploadable]
 class Post
 {
     /**
      * @throws Exception
      */
-    public function __construct(
-        string $title,
-        File   $imageFile
-    )
+    public function __construct()
     {
-        $this->title = $title;
-        $this->imageFile = $imageFile;
-        $this->imageFileName = null;
         $this->rating = null;
         $this->createdAt = DateTimeUtility::createDateTimeUtc();
         $this->updatedAt = null;
@@ -50,13 +45,6 @@ class Post
     {
         return $this->id;
     }
-
-    #[Column(
-        name: "created_by",
-        type: "string",
-        nullable: false
-    )]
-    private string $createdBy;
 
     #[Column(type: "string")]
     private string $title;

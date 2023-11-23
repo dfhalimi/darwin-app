@@ -1,6 +1,3 @@
-darwin_app.post_management.presentation:
-    resource: '../src/DarwinApp/PostManagement/Presentation/Resources/config/routes.yaml'
-
 shared.presentation:
     resource: '../src/Shared/Presentation/Resources/config/routes.yaml'
 

@@ -1,0 +1,7 @@
+controller:
+  resource: '../../src/**/*Controller.php'
+  type: attribute
+
+kernel:
+  resource: '../../src/Kernel.php'
+  type: attribute

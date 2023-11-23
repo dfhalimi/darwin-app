@@ -1,0 +1,10 @@
+{% extends '@shared/base.html.twig' %}
+
+{% block content %}
+    <h1>Create a new post</h1>
+    {{ form_start(form, {'enctype': 'multipart/form-data'}) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.imageFile) }}
+    <button type="submit">Create Post</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -3,15 +3,18 @@
 namespace App\Shared\Presentation\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 class CatchallController extends AbstractController
 {
-    public function indexAction(): Response
+    public function indexAction(
+        RouterInterface $router
+    ): Response
     {
-        // TODO adjust later
-        return $this->redirect(
-            $this->generateUrl(
+        return new RedirectResponse(
+            $router->generate(
                 'darwin_app.post_management.presentation.show_posts'
             )
         );

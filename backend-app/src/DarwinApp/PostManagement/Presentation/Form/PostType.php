@@ -1,16 +1,20 @@
 <?php
 
-namespace App\DarwinApp\PostManagement\Domain\Form;
+namespace App\DarwinApp\PostManagement\Presentation\Form;
 
+use App\DarwinApp\PostManagement\Domain\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class PostType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array                $options
+    ): void
     {
         $builder
             ->add(
@@ -25,7 +29,7 @@ class PostType extends AbstractType
         $builder
             ->add(
                 'imageFile',
-                VichImageType::class,
+                VichFileType::class,
                 [
                     'label' => 'Image',
                     'required' => true
@@ -37,7 +41,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => PostType::class
+            'data_class' => Post::class
         ]);
     }
 }

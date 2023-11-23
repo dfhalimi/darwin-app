@@ -1,13 +1,3 @@
-darwin_app.post_management.presentation.show_posts:
-  path:     /posts
-  controller: App\DarwinApp\PostManagement\Presentation\Controller\PostManagementController::showPostsAction
-  methods:  [GET]
-
-darwin_app.post_management.presentation.new_post:
-  path:     /posts/new
-  controller: App\DarwinApp\PostManagement\Presentation\Controller\PostManagementController::newPostAction
-  methods:  [GET, POST]
-
 darwin_app.post_management.presentation.edit_post:
   path:     /posts/{id}/edit
   controller: App\DarwinApp\PostManagement\Presentation\Controller\PostManagementController::editPostAction
