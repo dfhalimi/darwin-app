@@ -32,7 +32,9 @@ class RegistrationController extends FOSUserBundleRegistrationController
         parent::__construct($eventDispatcher, $formFactory, $userManager, $tokenStorage);
     }
 
-    public function registerAction(Request $request): Response
+    public function registerAction(
+        Request $request
+    ): Response
     {
         $user = $this->getUser();
 

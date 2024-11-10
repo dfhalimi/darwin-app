@@ -3,8 +3,8 @@ twig:
 
     paths:
         'src/Shared/Presentation/Resources/templates': 'shared'
-
         'src/DarwinApp/PostManagement/Presentation/Resources/templates': 'darwin_app.post_management'
+        'src/DarwinApp/UserManagement/Presentation/Resources/templates/bundles/FOSUserBundle': 'FOSUser'
 
     globals:
         post_management_service: '@App\DarwinApp\PostManagement\Domain\Service\PostManagementService'
