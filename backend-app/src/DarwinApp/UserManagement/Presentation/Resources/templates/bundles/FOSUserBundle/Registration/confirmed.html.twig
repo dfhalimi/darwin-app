@@ -1,0 +1,6 @@
+{% extends '@shared/base.html.twig' %}
+
+{% block content %}
+    <h1>Successfully signed up as {{ app.user.username }}</h1>
+    <a href="{{ path('fos_user_security_logout') }}">Log out</a>
+{% endblock %}

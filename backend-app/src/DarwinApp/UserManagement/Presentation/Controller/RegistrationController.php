@@ -15,6 +15,7 @@ use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
@@ -32,6 +33,11 @@ class RegistrationController extends FOSUserBundleRegistrationController
         parent::__construct($eventDispatcher, $formFactory, $userManager, $tokenStorage);
     }
 
+    #[Route(
+        path: ['/register'],
+        name: 'fos_user_registration_register',
+        methods: [Request::METHOD_GET]
+    )]
     public function registerAction(
         Request $request
     ): Response
@@ -155,5 +161,18 @@ class RegistrationController extends FOSUserBundleRegistrationController
             ],
             $response
         );
+    }
+
+    #[Route(
+        path: ['/register/confirmed'],
+        name: 'fos_user_registration_confirmed',
+        methods: [Request::METHOD_GET]
+    )]
+    public function registrationConfirmedAction(): Response
+    {
+        if (is_null($this->getUser())) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        return $this->render('@FOSUser/Registration/confirmed.html.twig');
     }
 }
